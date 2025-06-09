@@ -1,0 +1,93 @@
+/* Define fonte global e remove margens padrão */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+/* Garante que o app ocupa a altura toda */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Container principal padrão para páginas */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Botões padrão */
+button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  background-color: #FF69B4; /* Rosa padrão */
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #ff458c;
+}
+
+/* Inputs padrão */
+input, select, textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #FF69B4;
+}
+
+/* Títulos principais */
+h1, h2, h3 {
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+/* Centralizar elementos */
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Estilização de links */
+a {
+  text-decoration: none;
+  color: #FF69B4;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Scroll personalizado */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #FF69B4;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f0f0f0;
+}

@@ -1,0 +1,184 @@
+.ver-consultas-container {
+    display: flex;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .sidebar {
+    width: 60px;
+    background-color: #B03A5B;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+    position: fixed;
+  }
+  
+  .menu-icon {
+    width: 40px;
+    margin-bottom: 40px;
+  }
+  
+  .sidebar-icons img {
+    width: 25px;
+    margin: 20px 0;
+    cursor: pointer;
+  }
+
+  .sidebar-icons {
+    display: flex;
+    flex-direction: column; /* Um embaixo do outro */
+    align-items: center;
+    gap: 20px; /* Espaço entre os ícones */
+  }
+  
+  .conteudo {
+    margin-left: 60px;
+    width: 100%;
+  }
+  
+  .header {
+    background-color: #B03A5B;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .hibisco {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .consultas {
+    padding: 40px;
+  }
+  
+  .consultas h2 {
+    color: #e4006f;
+  }
+  
+  .consultas-lista {
+    background-color: #ff99cc;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+  }
+  
+  .consulta-card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .consulta-botoes {
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px; /* Adiciona espaço entre os botões */
+    margin-top: 10px;
+  }
+
+  .consulta-botoes button {
+    padding: 6px 12px; /* Reduz a altura e largura interna */
+    font-size: 14px;   /* Diminui a fonte, se quiser mais delicado */
+    font-weight: 400;  /* Deixa o texto com peso normal */
+    border-radius: 6px; /* Cantos levemente arredondados */
+    border: none;
+    cursor: pointer;
+  }
+  
+  .consulta-info h3 {
+    color: #e4006f;
+    margin: 0 0 5px 0;
+  }
+  
+  .consulta-info p {
+    margin: 5px 0;
+  }
+  
+  
+  .btn-remarcar {
+    background-color: #f88bb2;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  
+  .btn-cancelar {
+    background-color: #e4006f;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  
+  .btn-remarcar:hover {
+    background-color: #e46c99;
+  }
+  
+  .btn-cancelar:hover {
+    background-color: #c43f7b;
+  }
+  
+  /* Se não tiver consultas */
+  .sem-consultas {
+    background-color: #ff99cc;
+    padding: 40px;
+    border-radius: 10px;
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .sem-consultas p {
+    margin-bottom: 20px;
+    color: #e4006f;
+    font-weight: bold;
+  }
+  
+  .btn-agendar {
+    background-color: #e4006f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  
+  .btn-agendar:hover {
+    background-color: #c43f7b;
+  }
+  
+
+  .filtros {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .filtros input {
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    width: 195px;
+    background-color: #fff;
+    transition: border-color 0.3s;
+  }
+  
+  .filtros input:focus {
+    border-color: #e88ea2;
+    outline: none;
+  }
+  

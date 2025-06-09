@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;600&display=swap');
+
+:root {
+  --rosa-escuro: #B03A5B;
+  --rosa-claro: #FADCE5;
+}
+
+.login-profissional-container,
+.cadastro-profissional-container {
+  background-color: var(--rosa-escuro);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.logo-hibisco {
+  width: 65px;
+  height: 65px;
+}
+
+.header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  color: white;
+  margin: 0;
+}
+
+.login-card,
+.cadastro-card {
+  background-color: var(--rosa-claro);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-card h2,
+.cadastro-card h2 {
+  font-family: 'Poppins', sans-serif;
+  color: var(--rosa-escuro);
+  margin-bottom: 25px;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input,
+select {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+input::placeholder {
+  color: #aaa;
+}
+
+button {
+  background-color: var(--rosa-escuro);
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #922c4e;
+}
+
+.link-login,
+.link-cadastro {
+  margin-top: 15px;
+  font-family: 'Poppins', sans-serif;
+  color: var(--rosa-escuro);
+}
+
+.link-login span,
+.link-cadastro span {
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: underline;
+}

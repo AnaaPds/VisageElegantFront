@@ -1,0 +1,148 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background-color: #B03A5B;
+  padding: 30px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 450px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  border: 4px solid white;
+}
+
+/* Scroll bonito (opcional) */
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 10px;
+}
+
+.header-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.header-modal h1 {
+  color: white;
+  font-size: 26px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.hibisco-modal {
+  width: 60px;
+  height: 60px;
+}
+
+h2 {
+  margin: 20px 0;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.form-group {
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  color: white;
+  font-weight: bold;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 2px solid white;
+  outline: none;
+  font-size: 14px;
+  background-color: white;
+  color: #B03A5B;
+  font-weight: bold;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #B03A5B;
+  opacity: 0.7;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.input-com-icone {
+  position: relative;
+}
+
+.input-com-icone input {
+  padding-right: 40px;
+}
+
+.icone-calendario {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+}
+
+.btn-agendar {
+  background-color: white;
+  color: #B03A5B;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  font-weight: bold;
+}
+
+.btn-agendar:disabled {
+  background-color: #f3cadd;
+  cursor: not-allowed;
+}
+
+.btn-agendar:hover:enabled {
+  background-color: #f1f1f1;
+}
+
+.btn-fechar {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 26px;
+  color: white;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.btn-fechar:hover {
+  color: #f1f1f1;
+}

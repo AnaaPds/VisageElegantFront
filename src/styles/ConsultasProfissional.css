@@ -1,0 +1,141 @@
+.consultas-profissional-container {
+  display: flex;
+  height: 100vh;
+  background-color: white;
+  overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+  background-color: #B03A5B;
+  width: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  gap: 25px;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+}
+
+.sidebar img {
+  width: 30px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.sidebar img:hover {
+  transform: scale(1.1);
+}
+
+/* Conteúdo */
+.conteudo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* Header */
+.header {
+  background-color: #B03A5B;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 0;
+}
+
+.header h1 {
+  font-family: 'Cursive';
+  font-size: 26px;
+}
+
+.hibisco {
+  width: 28px;
+}
+
+/* Consultas Container */
+.consultas {
+  background-color: #fda4cf;
+  margin: 40px auto;
+  width: 90%;
+  max-width: 900px;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.consultas h2 {
+  color: white;
+  margin-bottom: 25px;
+  text-align: center;
+  font-size: 24px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Card de Consulta */
+.consulta-card {
+  background-color: white;
+  padding: 18px 20px;
+  border-radius: 12px;
+  margin-bottom: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.consulta-card:hover {
+  transform: translateY(-2px);
+}
+
+.consulta-info {
+  flex: 1;
+}
+
+.consulta-card h3 {
+  color: #f5539a;
+  margin-bottom: 6px;
+  font-size: 18px;
+}
+
+.consulta-card p {
+  margin: 2px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Botão */
+.consulta-card button {
+  background-color: #f5539a;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.consulta-card button:hover {
+  background-color: #d13b7f;
+  transform: scale(1.05);
+}
+
+/* Scroll bonito no conteúdo */
+.conteudo::-webkit-scrollbar {
+  width: 8px;
+}
+
+.conteudo::-webkit-scrollbar-thumb {
+  background-color: #B03A5B;
+  border-radius: 10px;
+}
+
+.conteudo::-webkit-scrollbar-track {
+  background: #f3f3f3;
+}
