@@ -26,8 +26,8 @@ function CadastroProfissional() {
       return;
     }
 
-    if (senha.length < 20) {
-      alert('Senha deve ter no mínimo 20 caracteres');
+    if (senha.length < 6) {
+      alert('Senha deve ter no mínimo 6 caracteres');
       return;
     }
 

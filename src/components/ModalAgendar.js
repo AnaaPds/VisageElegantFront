@@ -53,17 +53,15 @@ function ModalAgendar({ procedimento, onClose, onConfirm }) {
     }
 
     var dataHora = data + 'T' + (horario.length === 5 ? horario + ':00' : horario);
+var dadosConsulta = {
+  dataHora: dataHora,
+  paciente: { id: pacienteId },
+  profissional: { id: medicoSelecionado.id },
+  observacoes: observacoes,
+  telefonePaciente: telefone,
+  procedimento: procedimento
+};
 
-    var dadosConsulta = {
-      dataHora: dataHora,
-      pacienteId: pacienteId,
-      profissionalId: medicoSelecionado.id,
-      especialidade: especialidade,
-      observacoes: observacoes,
-      telefonePaciente: telefone,
-      nomePaciente: nome,
-      procedimento: procedimento
-    };
 
     axios.post('http://localhost:8080/consultas', dadosConsulta, {
       headers: {

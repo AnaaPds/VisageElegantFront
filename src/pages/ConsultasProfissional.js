@@ -8,115 +8,188 @@ function ConsultasProfissional() {
   const [detalhesVisiveis, setDetalhesVisiveis] = useState({});
   const [filtroNome, setFiltroNome] = useState('');
   const [filtroData, setFiltroData] = useState('');
-
-  const API_BASE = "http://localhost:8080/consultas";
+  const [carregando, setCarregando] = useState(true);
+  const [cancelando, setCancelando] = useState(new Set());
 
   useEffect(() => {
     const idProfissional = localStorage.getItem("idProfissional");
+
     if (!idProfissional) {
       alert("ID do profissional não encontrado. Faça login novamente.");
       return;
     }
 
-    fetch(`${API_BASE}/profissional/${idProfissional}`)
-      .then(res => {
+    fetch("http://localhost:8080/consultas/profissional/" + idProfissional)
+      .then(async (res) => {
+        if (res.status === 204) return [];
         if (!res.ok) throw new Error('Erro ao carregar consultas');
-        return res.json();
+        const data = await res.json();
+        return data;
       })
-      .then(data => setConsultas(data))
-      .catch(err => console.error(err));
+      .then((data) => {
+        setConsultas(data);
+        setCarregando(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        alert('Erro ao carregar consultas');
+        setCarregando(false);
+      });
   }, []);
 
   const cancelarConsulta = (id) => {
-    fetch(`${API_BASE}/${id}`, { method: 'DELETE' })
+    if (!window.confirm('Tem certeza que deseja cancelar esta consulta?')) return;
+
+    setCancelando(prev => new Set(prev).add(id));
+
+    fetch("http://localhost:8080/consultas/" + id, { method: 'DELETE' })
       .then(res => {
+        setCancelando(prev => {
+          const nova = new Set(prev);
+          nova.delete(id);
+          return nova;
+        });
         if (res.status === 204) {
           setConsultas(prev => prev.filter(c => c.id !== id));
         } else {
           alert('Erro ao cancelar consulta');
         }
       })
-      .catch(() => alert('Erro ao cancelar consulta'));
+      .catch(() => {
+        setCancelando(prev => {
+          const nova = new Set(prev);
+          nova.delete(id);
+          return nova;
+        });
+        alert('Erro ao cancelar consulta');
+      });
   };
 
   const toggleDetalhes = (index) => {
-    setDetalhesVisiveis(prev => ({
-      ...prev,
-      [index]: !prev[index],
-    }));
+    setDetalhesVisiveis(prev => {
+      const novo = {...prev};
+      novo[index] = !novo[index];
+      return novo;
+    });
   };
 
-  const consultasFiltradas = consultas.filter(consulta => {
-    const nomePaciente = consulta.paciente?.nome || '';
-    const dataHora = consulta.dataHora || '';
+  const consultasFiltradas = consultas.filter((consulta) => {
+    const nomePaciente = consulta.paciente && consulta.paciente.nome ? consulta.paciente.nome : '';
+    const dataFormatada = consulta.dataHora ? consulta.dataHora.slice(0, 10) : '';
     const nomeMatch = nomePaciente.toLowerCase().includes(filtroNome.toLowerCase());
-    const dataMatch = dataHora.includes(filtroData);
-    return nomeMatch && (filtroData === '' || dataMatch);
+    const dataMatch = filtroData === '' || dataFormatada === filtroData;
+    return nomeMatch && dataMatch;
   });
 
-  return (
-    <div className="consultas-profissional-container">
-      <div className="sidebar">
-        <img
-          src="assets/imagens/home.webp"
-          alt="Home"
-          onClick={() => navigate('/home-profissional')}
-          className="icon"
-          style={{ cursor: 'pointer' }}
-        />
-      </div>
+  return React.createElement(
+    'div',
+    { className: 'consultas-profissional-container' },
+    React.createElement(
+      'div',
+      { className: 'sidebar' },
+      React.createElement('img', {
+        src: '/assets/imagens/home.webp',
+        alt: 'Home',
+        onClick: () => navigate('/home-profissional'),
+        className: 'icon',
+        style: { cursor: 'pointer' }
+      })
+    ),
 
-      <div className="conteudo">
-        <div className="header">
-          <h1>Visage Élégant</h1>
-          <img src="assets/imagens/hibisco.png" alt="hibisco" className="hibisco" />
-        </div>
+    React.createElement(
+      'div',
+      { className: 'conteudo' },
+      React.createElement(
+        'div',
+        { className: 'header' },
+        React.createElement('h1', null, 'Visage Élégant'),
+        React.createElement('img', {
+          src: '/assets/imagens/hibisco.png',
+          alt: 'hibisco',
+          className: 'hibisco'
+        })
+      ),
 
-        <div className="consultas">
-          <h2>Consultas</h2>
+      React.createElement(
+        'div',
+        { className: 'consultas' },
+        React.createElement('h2', null, 'Consultas'),
 
-          <div className="filtros">
-            <input
-              type="text"
-              placeholder="Filtrar por nome"
-              value={filtroNome}
-              onChange={(e) => setFiltroNome(e.target.value)}
-            />
-            <input
-              type="date"
-              value={filtroData}
-              onChange={(e) => setFiltroData(e.target.value)}
-            />
-          </div>
+        React.createElement(
+          'div',
+          { className: 'filtros' },
+          React.createElement('input', {
+            type: 'text',
+            placeholder: 'Filtrar por nome',
+            value: filtroNome,
+            onChange: (e) => setFiltroNome(e.target.value)
+          }),
+          React.createElement('input', {
+            type: 'date',
+            value: filtroData,
+            onChange: (e) => setFiltroData(e.target.value)
+          })
+        ),
 
-          {consultasFiltradas.length === 0 ? (
-            <p>Não há consultas encontradas.</p>
-          ) : (
-            consultasFiltradas.map((consulta, index) => (
-              <div className="consulta-card" key={consulta.id}>
-                <h3>{consulta.procedimento || 'Procedimento não informado'}</h3>
-                <p><strong>Nome:</strong> {consulta.paciente?.nome || 'Nome não disponível'}</p>
-                <p><strong>Data:</strong> {consulta.dataHora ? new Date(consulta.dataHora).toLocaleString('pt-BR') : 'Data não informada'}</p>
+        carregando
+          ? React.createElement('p', null, 'Carregando consultas...')
+          : consultasFiltradas.length === 0
+            ? React.createElement('p', null, 'Não há consultas encontradas.')
+            : consultasFiltradas.map((consulta, index) => {
+                const data = new Date(consulta.dataHora);
+                const dataFormatada = data.toLocaleDateString('pt-BR');
+                const horaFormatada = data.toLocaleTimeString('pt-BR', {
+                  hour: '2-digit',
+                  minute: '2-digit',
+                });
 
-                {detalhesVisiveis[index] && (
-                  <div className="detalhes">
-                    <p><strong>Telefone:</strong> {consulta.paciente?.telefone || 'Telefone não informado'}</p>
-                    <p><strong>Observações:</strong> {consulta.observacoes || 'Nenhuma'}</p>
-                  </div>
-                )}
+                return React.createElement(
+                  'div',
+                  { className: 'consulta-card', key: consulta.id },
+                  React.createElement('h3', null, consulta.procedimento || 'Procedimento não informado'),
+                  React.createElement('p', null,
+                    React.createElement('strong', null, 'Nome: '),
+                    consulta.paciente?.nome || 'Nome não disponível'
+                  ),
+                  React.createElement('p', null,
+                    React.createElement('strong', null, 'Data: '),
+                    consulta.dataHora ? `${dataFormatada} às ${horaFormatada}` : 'Data não informada'
+                  ),
 
-                <div className="botoes">
-                  <button onClick={() => toggleDetalhes(index)}>
-                    {detalhesVisiveis[index] ? 'Ocultar' : 'Ver mais'}
-                  </button>
-                  <button onClick={() => cancelarConsulta(consulta.id)}>Cancelar</button>
-                </div>
-              </div>
-            ))
-          )}
-        </div>
-      </div>
-    </div>
+                  detalhesVisiveis[index] && React.createElement(
+                    'div',
+                    { className: 'detalhes' },
+                    React.createElement('p', null,
+                      React.createElement('strong', null, 'Telefone: '),
+                      consulta.paciente?.telefone || 'Telefone não informado'
+                    ),
+                    React.createElement('p', null,
+                      React.createElement('strong', null, 'Observações: '),
+                      consulta.observacoes || 'Nenhuma'
+                    )
+                  ),
+
+                  React.createElement(
+                    'div',
+                    { className: 'botoes' },
+                    React.createElement(
+                      'button',
+                      { onClick: () => toggleDetalhes(index) },
+                      detalhesVisiveis[index] ? 'Ocultar' : 'Ver mais'
+                    ),
+                    React.createElement(
+                      'button',
+                      {
+                        onClick: () => cancelarConsulta(consulta.id),
+                        disabled: cancelando.has(consulta.id)
+                      },
+                      cancelando.has(consulta.id) ? 'Cancelando...' : 'Cancelar'
+                    )
+                  )
+                );
+              })
+      )
+    )
   );
 }
 
